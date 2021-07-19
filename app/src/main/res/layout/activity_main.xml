@@ -1,115 +1,216 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    app:layout_editor_absoluteX="1dp"
+    app:layout_editor_absoluteY="1dp"
+    android:fillViewport="true">
 
-    <TextView
-        android:id="@+id/appTitleTV"
-        android:layout_width="wrap_content"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/orderurslice"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.022" />
+        tools:context=".MainActivity">
 
-    <ImageView
-        android:id="@+id/pizzaTypeImage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/appTitleTV"
-        tools:srcCompat="@tools:sample/avatars" />
+        <TextView
+            android:id="@+id/appTitleTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/orderurslice"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/pizzaTypeImage"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <Spinner
-        android:id="@+id/spinner1"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="295dp"
-        tools:layout_editor_absoluteY="296dp" />
+        <ImageView
+            android:id="@+id/pizzaTypeImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@+id/pizzaTypeTV"
+            app:layout_constraintEnd_toEndOf="@+id/appTitleTV"
+            app:layout_constraintStart_toStartOf="@+id/appTitleTV"
+            app:layout_constraintTop_toBottomOf="@+id/appTitleTV"
+            android:src="@drawable/ic_launcher_background" />
 
-    <Spinner
-        android:id="@+id/spinner2"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="295dp"
-        tools:layout_editor_absoluteY="362dp" />
+        <Spinner
+            android:id="@+id/selectSizeSpinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/selectSizeTV"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/selectSizeTV"
+            app:layout_constraintTop_toTopOf="@+id/selectSizeTV" />
 
-    <Spinner
-        android:id="@+id/spinner3"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="295dp"
-        tools:layout_editor_absoluteY="436dp" />
+        <Spinner
+            android:id="@+id/selectCrustSpinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/selectCrustTV"
+            app:layout_constraintEnd_toEndOf="@+id/selectSizeSpinner"
+            app:layout_constraintStart_toStartOf="@+id/selectSizeSpinner"
+            app:layout_constraintTop_toTopOf="@+id/selectCrustTV" />
 
-    <Spinner
-        android:id="@+id/spinner4"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="295dp"
-        tools:layout_editor_absoluteY="500dp" />
+        <Spinner
+            android:id="@+id/vegToppingsSpinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/vegToppingsTV"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/vegToppingsTV"
+            app:layout_constraintTop_toTopOf="@+id/vegToppingsTV" />
 
-    <Spinner
-        android:id="@+id/spinner5"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="295dp"
-        tools:layout_editor_absoluteY="568dp" />
+        <Spinner
+            android:id="@+id/nonVegToppingsSpinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/nonVegToppingsTV"
+            app:layout_constraintEnd_toEndOf="@+id/vegToppingsSpinner"
+            app:layout_constraintStart_toStartOf="@+id/vegToppingsSpinner"
+            app:layout_constraintTop_toTopOf="@+id/nonVegToppingsTV" />
 
-    <Button
-        android:id="@+id/btnAddToCart"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Add to cart"
-        tools:layout_editor_absoluteX="138dp"
-        tools:layout_editor_absoluteY="633dp" />
+        <Button
+            android:id="@+id/btnAddToCart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="@string/add_to_cart"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/totalPriceTV" />
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        tools:layout_editor_absoluteX="43dp"
-        tools:layout_editor_absoluteY="301dp" />
+        <TextView
+            android:id="@+id/selectSizeTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="@string/select_size"
+            app:layout_constraintEnd_toStartOf="@+id/selectSizeSpinner"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/guideline2" />
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        tools:layout_editor_absoluteX="43dp"
-        tools:layout_editor_absoluteY="362dp" />
+        <TextView
+            android:id="@+id/selectCrustTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="@string/select_crust"
+            app:layout_constraintEnd_toEndOf="@+id/selectSizeTV"
+            app:layout_constraintStart_toStartOf="@+id/selectSizeTV"
+            app:layout_constraintTop_toBottomOf="@+id/selectSizeTV" />
 
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        tools:layout_editor_absoluteX="43dp"
-        tools:layout_editor_absoluteY="441dp" />
+        <TextView
+            android:id="@+id/vegToppingsTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="Add Veg Toppings"
+            app:layout_constraintEnd_toStartOf="@+id/vegToppingsSpinner"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toppingTitleTV" />
 
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        tools:layout_editor_absoluteX="43dp"
-        tools:layout_editor_absoluteY="505dp" />
+        <TextView
+            android:id="@+id/nonVegToppingsTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="@string/add_non_veg_toppings"
+            app:layout_constraintEnd_toEndOf="@+id/vegToppingsTV"
+            app:layout_constraintStart_toStartOf="@+id/vegToppingsTV"
+            app:layout_constraintTop_toBottomOf="@+id/vegToppingsTV" />
 
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        tools:layout_editor_absoluteX="43dp"
-        tools:layout_editor_absoluteY="573dp" />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.36388507" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/pizzaTypeTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Margherita"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/pizzaDescTV"
+            app:layout_constraintEnd_toEndOf="@+id/pizzaTypeImage"
+            app:layout_constraintStart_toStartOf="@+id/pizzaTypeImage"
+            app:layout_constraintTop_toBottomOf="@+id/pizzaTypeImage" />
+
+        <CheckBox
+            android:id="@+id/extraCheeseCheck"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="60dp"
+            android:text="@string/add_extra_cheese"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/selectCrustTV" />
+
+        <EditText
+            android:id="@+id/extraCheesePrice"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="numberDecimal"
+            android:text="1.00"
+            android:textAlignment="center"
+            app:layout_constraintBottom_toBottomOf="@+id/extraCheeseCheck"
+            app:layout_constraintStart_toEndOf="@+id/extraCheeseCheck"
+            app:layout_constraintTop_toTopOf="@+id/extraCheeseCheck" />
+
+        <TextView
+            android:id="@+id/toppingTitleTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/add_toppings"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/extraCheeseCheck" />
+
+        <TextView
+            android:id="@+id/pizzaDescTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Description to be added"
+            app:layout_constraintBottom_toTopOf="@+id/guideline2"
+            app:layout_constraintEnd_toEndOf="@+id/pizzaTypeTV"
+            app:layout_constraintStart_toStartOf="@+id/pizzaTypeTV"
+            app:layout_constraintTop_toBottomOf="@+id/pizzaTypeTV" />
+
+        <TextView
+            android:id="@+id/totalPriceTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="@string/total_price"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/nonVegToppingsTV" />
+
+        <EditText
+            android:id="@+id/totalPriceET"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:ems="10"
+            android:inputType="numberDecimal"
+            app:layout_constraintBottom_toBottomOf="@+id/totalPriceTV"
+            app:layout_constraintStart_toEndOf="@+id/totalPriceTV"
+            app:layout_constraintTop_toTopOf="@+id/totalPriceTV" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

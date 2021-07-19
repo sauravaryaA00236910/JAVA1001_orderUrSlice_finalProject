@@ -1,4 +1,11 @@
 <resources>
     <string name="app_name">orderUrSlice</string>
     <string name="orderurslice">orderUrSlice</string>
+    <string name="add_to_cart">Add to cart</string>
+    <string name="select_size">Select Size</string>
+    <string name="select_crust">Select Crust</string>
+    <string name="add_non_veg_toppings">Add Non-Veg Toppings</string>
+    <string name="add_extra_cheese">Add Extra Cheese @ $</string>
+    <string name="add_toppings">Add Toppings</string>
+    <string name="total_price">Total Price $</string>
 </resources>

@@ -18,15 +18,8 @@
         android:id="@+id/pizzaListDescText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Select your favorite Slice:"
+        android:text="Select your favorite Slice to customize:"
         tools:layout_editor_absoluteX="12dp"
         tools:layout_editor_absoluteY="97dp" />
-
-    <ListView
-        android:id="@+id/pizzListView"
-        android:layout_width="409dp"
-        android:layout_height="600dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        tools:layout_editor_absoluteX="1dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
