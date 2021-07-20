@@ -18,6 +18,7 @@
             android:id="@+id/appTitleTV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
             android:text="@string/orderurslice"
             android:textSize="24sp"
             android:textStyle="bold"
@@ -31,11 +32,12 @@
             android:id="@+id/pizzaTypeImage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:src="@drawable/ic_launcher_background"
             app:layout_constraintBottom_toTopOf="@+id/pizzaTypeTV"
             app:layout_constraintEnd_toEndOf="@+id/appTitleTV"
             app:layout_constraintStart_toStartOf="@+id/appTitleTV"
-            app:layout_constraintTop_toBottomOf="@+id/appTitleTV"
-            android:src="@drawable/ic_launcher_background" />
+            app:layout_constraintTop_toBottomOf="@+id/appTitleTV" />
 
         <Spinner
             android:id="@+id/selectSizeSpinner"
@@ -55,29 +57,11 @@
             app:layout_constraintStart_toStartOf="@+id/selectSizeSpinner"
             app:layout_constraintTop_toTopOf="@+id/selectCrustTV" />
 
-        <Spinner
-            android:id="@+id/vegToppingsSpinner"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="@+id/vegToppingsTV"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/vegToppingsTV"
-            app:layout_constraintTop_toTopOf="@+id/vegToppingsTV" />
-
-        <Spinner
-            android:id="@+id/nonVegToppingsSpinner"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="@+id/nonVegToppingsTV"
-            app:layout_constraintEnd_toEndOf="@+id/vegToppingsSpinner"
-            app:layout_constraintStart_toStartOf="@+id/vegToppingsSpinner"
-            app:layout_constraintTop_toTopOf="@+id/nonVegToppingsTV" />
-
         <Button
             android:id="@+id/btnAddToCart"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="4dp"
             android:text="@string/add_to_cart"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -92,7 +76,7 @@
             android:text="@string/select_size"
             app:layout_constraintEnd_toStartOf="@+id/selectSizeSpinner"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/guideline2" />
+            app:layout_constraintTop_toBottomOf="@+id/pizzaDescTV" />
 
         <TextView
             android:id="@+id/selectCrustTV"
@@ -110,7 +94,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:text="Add Veg Toppings"
-            app:layout_constraintEnd_toStartOf="@+id/vegToppingsSpinner"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/toppingTitleTV" />
 
@@ -122,19 +106,14 @@
             android:text="@string/add_non_veg_toppings"
             app:layout_constraintEnd_toEndOf="@+id/vegToppingsTV"
             app:layout_constraintStart_toStartOf="@+id/vegToppingsTV"
-            app:layout_constraintTop_toBottomOf="@+id/vegToppingsTV" />
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.36388507" />
+            app:layout_constraintTop_toBottomOf="@+id/vegToppingsLV"
+            app:layout_constraintBottom_toTopOf="@+id/nonVegToppingsLV"/>
 
         <TextView
             android:id="@+id/pizzaTypeTV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
             android:text="Margherita"
             android:textSize="16sp"
             android:textStyle="bold"
@@ -170,7 +149,7 @@
             android:id="@+id/toppingTitleTV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="24dp"
             android:text="@string/add_toppings"
             android:textSize="16sp"
             android:textStyle="bold"
@@ -182,8 +161,9 @@
             android:id="@+id/pizzaDescTV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
             android:text="Description to be added"
-            app:layout_constraintBottom_toTopOf="@+id/guideline2"
+            app:layout_constraintBottom_toTopOf="@+id/selectSizeTV"
             app:layout_constraintEnd_toEndOf="@+id/pizzaTypeTV"
             app:layout_constraintStart_toStartOf="@+id/pizzaTypeTV"
             app:layout_constraintTop_toBottomOf="@+id/pizzaTypeTV" />
@@ -192,13 +172,15 @@
             android:id="@+id/totalPriceTV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="16dp"
             android:text="@string/total_price"
             android:textSize="16sp"
             android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/btnAddToCart"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/nonVegToppingsTV" />
+            app:layout_constraintTop_toBottomOf="@+id/nonVegToppingsLV" />
 
         <EditText
             android:id="@+id/totalPriceET"
@@ -210,6 +192,27 @@
             app:layout_constraintBottom_toBottomOf="@+id/totalPriceTV"
             app:layout_constraintStart_toEndOf="@+id/totalPriceTV"
             app:layout_constraintTop_toTopOf="@+id/totalPriceTV" />
+
+        <ListView
+            android:id="@+id/nonVegToppingsLV"
+            android:layout_width="match_parent"
+            android:layout_height="500dp"
+            android:smoothScrollbar="true"
+            app:layout_constraintBottom_toTopOf="@+id/btnAddToCart"
+            app:layout_constraintTop_toBottomOf="@+id/nonVegToppingsTV"
+            app:layout_constraintVertical_bias="0.058"
+            tools:layout_editor_absoluteX="0dp" />
+
+        <ListView
+            android:id="@+id/vegToppingsLV"
+            android:layout_width="match_parent"
+            android:layout_height="500dp"
+            android:smoothScrollbar="true"
+            app:layout_constraintBottom_toTopOf="@+id/nonVegToppingsTV"
+            app:layout_constraintTop_toBottomOf="@+id/vegToppingsTV"
+            app:layout_constraintVertical_bias="0.058"
+            tools:layout_editor_absoluteX="0dp" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

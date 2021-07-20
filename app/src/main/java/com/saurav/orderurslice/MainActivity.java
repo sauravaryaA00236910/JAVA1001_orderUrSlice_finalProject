@@ -7,8 +7,10 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
+import android.widget.CheckedTextView;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.Spinner;
 
 import java.lang.reflect.Array;
@@ -82,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
 
         crustSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id){
                 totalPrice += crusts.get(position).price;
                 totalPriceET.setText(String.valueOf(totalPrice));
             }
@@ -105,24 +107,25 @@ public class MainActivity extends AppCompatActivity {
         vegToppings.add(7, new PizzaVegTopping("Jalapeno", 0.5f));
         vegToppings.add(8, new PizzaVegTopping("Golden Corn", 0.5f));
         vegToppings.add(9, new PizzaVegTopping("Black Olive", 0.5f));
-        ArrayAdapter adapterVegTopping = new ArrayAdapter(this, android.R.layout.simple_expandable_list_item_1, vegToppings);
-        Spinner vegToppingsSpinner = findViewById(R.id.vegToppingsSpinner);
-        vegToppingsSpinner.setAdapter(adapterVegTopping);
+        ArrayAdapter adapterVegTopping = new ArrayAdapter(this, android.R.layout.select_dialog_multichoice, vegToppings);
+        ListView vegToppingsLV = findViewById(R.id.vegToppingsLV);
+        vegToppingsLV.setAdapter(adapterVegTopping);
 
-        vegToppingsSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        vegToppingsLV.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                totalPrice += vegToppings.get(position).price;;
-                totalPriceET.setText(String.valueOf(totalPrice));
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                CheckedTextView item = (CheckedTextView) view;
+                item.toggle();
+                if(item.isChecked()){
+                    totalPrice += vegToppings.get(position).price;
+                    totalPriceET.setText(String.valueOf(totalPrice));
+                }else{
+                    totalPrice -= vegToppings.get(position).price;
+                    totalPriceET.setText(String.valueOf(totalPrice));
+                }
             }
         });
 
-//        PizzaNonVegTopping[] nonVegToppings = {new PizzaNonVegTopping("Pepper Barbecue Chicken", 1f), new PizzaNonVegTopping("Peri-Peri Chicken", 1f), new PizzaNonVegTopping("Grilled Chicken Rasher", 1f), new PizzaNonVegTopping("Chicken Sausage", 1f), new PizzaNonVegTopping("Chicken Tikka", 1f), new PizzaNonVegTopping("Chicken Pepperoni", 1f)};
         ArrayList<PizzaNonVegTopping> nonVegToppings = new ArrayList<>();
         nonVegToppings.add(0, new PizzaNonVegTopping("None", 0f));
         nonVegToppings.add(1, new PizzaNonVegTopping("Pepper Barbeque Chicken", 1f));
@@ -131,22 +134,24 @@ public class MainActivity extends AppCompatActivity {
         nonVegToppings.add(4, new PizzaNonVegTopping("Chicken Sausage", 1f));
         nonVegToppings.add(5, new PizzaNonVegTopping("Chicken Tikka", 1f));
         nonVegToppings.add(6, new PizzaNonVegTopping("Chicken Pepperoni", 1f));
-        ArrayAdapter adapterNonVegTopping = new ArrayAdapter(this, android.R.layout.simple_expandable_list_item_1, nonVegToppings);
-        Spinner nonVegToppingsSpinner = findViewById(R.id.nonVegToppingsSpinner);
-        nonVegToppingsSpinner.setAdapter(adapterNonVegTopping);
-        nonVegToppingsSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                totalPrice += nonVegToppings.get(position).price;;
-                totalPriceET.setText(String.valueOf(totalPrice));
-            }
 
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
+        ArrayAdapter adapterNonVegTopping = new ArrayAdapter(this, android.R.layout.select_dialog_multichoice, nonVegToppings);
+        ListView nonVegToppingsLV = findViewById(R.id.nonVegToppingsLV);
+        nonVegToppingsLV.setAdapter(adapterNonVegTopping);
 
+        nonVegToppingsLV.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                CheckedTextView item = (CheckedTextView) view;
+                item.toggle();
+                if(item.isChecked()){
+                    totalPrice += nonVegToppings.get(position).price;
+                    totalPriceET.setText(String.valueOf(totalPrice));
+                }else{
+                    totalPrice -= nonVegToppings.get(position).price;
+                    totalPriceET.setText(String.valueOf(totalPrice));
+                }
             }
         });
-
-//        totalPriceET.setText(String.valueOf(totalPrice));
     }
 }
