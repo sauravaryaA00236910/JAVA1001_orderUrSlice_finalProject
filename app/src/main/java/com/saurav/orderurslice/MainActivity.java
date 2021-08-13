@@ -2,16 +2,20 @@ package com.saurav.orderurslice;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CheckedTextView;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -21,6 +25,9 @@ public class MainActivity extends AppCompatActivity {
 
     private float totalPrice;
     private EditText totalPriceET;
+    private Button btnAddToCart;
+    private TextView pizzaTypeTV;
+    private TextView pizzaDescTV;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +35,36 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         totalPrice = 0;
+
+        String pizzaName = getIntent().getStringExtra("pizzaName_key");
+        pizzaTypeTV = findViewById(R.id.pizzaTypeTV);
+        pizzaTypeTV.setText(pizzaName);
+
+        String pizzaDesc = getIntent().getStringExtra("pizzaDesc_key");
+        pizzaDescTV = findViewById(R.id.pizzaDescTV);
+        pizzaDescTV.setText(pizzaDesc);
+
+
+        btnAddToCart = findViewById(R.id.btnAddToCart);
+        btnAddToCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent n = new Intent(MainActivity.this, CartPizzaListActivity.class);
+                n.putExtra("pizzaType_key", (Parcelable) pizzaTypeTV);
+//                startActivity(n);
+//                Intent d = new Intent(MainActivity.this, CartPizzaListActivity.class);
+                n.putExtra("pizzaDesc_key", (Parcelable) pizzaDescTV);
+                // loop through toppings and create a String with items
+                // putExtra(toppings)
+
+                // putExtra(chicken?)
+                // putExtra(onions?)
+                // ...
+                startActivity(n);
+
+                startActivity(new Intent(getApplicationContext(), CartPizzaListActivity.class));
+            }
+        });
 
         totalPriceET = findViewById(R.id.totalPriceET);
         CheckBox extraCheeseCheck = findViewById(R.id.extraCheeseCheck);
