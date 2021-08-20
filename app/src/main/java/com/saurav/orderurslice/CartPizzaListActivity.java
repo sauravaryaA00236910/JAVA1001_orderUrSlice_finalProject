@@ -13,19 +13,17 @@ import java.util.ArrayList;
 
 public class CartPizzaListActivity extends AppCompatActivity {
 
+    ArrayList<String> cartPizzaArrayList = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cart_pizza_list);
 
-//        String pizzaType = getIntent().getStringExtra("pizzaType_key");
-//        String pizzaDesc = getIntent().getStringExtra("pizzaDesc_key");
+        Intent intent = getIntent();
+        cartPizzaArrayList = intent.getStringArrayListExtra("cartPizzaArrayList_key");
 
-        ArrayList<CartPizzaDetails> pizzaCartList = new ArrayList<>();
-        pizzaCartList.add(0, new CartPizzaDetails("pizzaType", "pizzaDesc"));
-
-
-        ArrayAdapter adapterPizzaCartList = new ArrayAdapter(this, android.R.layout.simple_expandable_list_item_1, pizzaCartList);
+        ArrayAdapter adapterPizzaCartList = new ArrayAdapter(this, android.R.layout.simple_list_item_1, cartPizzaArrayList);
 
         ListView pizzaCartLV = findViewById(R.id.pizzaCartLV);
         pizzaCartLV.setAdapter(adapterPizzaCartList);

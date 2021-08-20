@@ -28,6 +28,15 @@ public class MainActivity extends AppCompatActivity {
     private Button btnAddToCart;
     private TextView pizzaTypeTV;
     private TextView pizzaDescTV;
+    private String initialPrice;
+    private String customPizza;
+    private String selectedSize;
+    private String selectedCrust;
+    private String extraCheeseSelect;
+    private String selectedVegToppings;
+    private String selectedNonVegToppings;
+    ArrayList<String> customPizzaArrayList = new ArrayList<>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,25 +53,20 @@ public class MainActivity extends AppCompatActivity {
         pizzaDescTV = findViewById(R.id.pizzaDescTV);
         pizzaDescTV.setText(pizzaDesc);
 
+        initialPrice = getIntent().getStringExtra("pizzaPrice_key");
+        totalPrice += Float.parseFloat(initialPrice);
+
+        customPizzaArrayList = getIntent().getStringArrayListExtra("cartPizzaArrayList_key");
 
         btnAddToCart = findViewById(R.id.btnAddToCart);
         btnAddToCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent n = new Intent(MainActivity.this, CartPizzaListActivity.class);
-                n.putExtra("pizzaType_key", (Parcelable) pizzaTypeTV);
-//                startActivity(n);
-//                Intent d = new Intent(MainActivity.this, CartPizzaListActivity.class);
-                n.putExtra("pizzaDesc_key", (Parcelable) pizzaDescTV);
-                // loop through toppings and create a String with items
-                // putExtra(toppings)
-
-                // putExtra(chicken?)
-                // putExtra(onions?)
-                // ...
+                customPizza =  pizzaName + ": " + pizzaDesc + ": " + selectedSize + ": " + selectedCrust + ": " + extraCheeseSelect + ": " + selectedVegToppings + ": " + selectedNonVegToppings + ": $" + totalPrice;
+                customPizzaArrayList.add(customPizza);
+                n.putStringArrayListExtra("customPizzaArrayList_key", customPizzaArrayList);
                 startActivity(n);
-
-                startActivity(new Intent(getApplicationContext(), CartPizzaListActivity.class));
             }
         });
 
@@ -76,9 +80,11 @@ public class MainActivity extends AppCompatActivity {
                 if (buttonView.isChecked()){
                     totalPrice += Float.parseFloat(extraCheesePrice.getText().toString());
                     totalPriceET.setText(String.valueOf(totalPrice));
+                    extraCheeseSelect = "Extra Cheese";
                 }else {
                     totalPrice -=1;
                     totalPriceET.setText(String.valueOf(totalPrice));
+                    extraCheeseSelect = "No Extra Cheese";
                 }
             }
         });
@@ -100,6 +106,7 @@ public class MainActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 totalPrice += sizes.get(position).price;
                 totalPriceET.setText(String.valueOf(totalPrice));
+                selectedSize = sizes.get(position).size;
             }
 
             @Override
@@ -124,6 +131,7 @@ public class MainActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id){
                 totalPrice += crusts.get(position).price;
                 totalPriceET.setText(String.valueOf(totalPrice));
+                selectedCrust = crusts.get(position).crust;
             }
 
             @Override
@@ -156,9 +164,11 @@ public class MainActivity extends AppCompatActivity {
                 if(item.isChecked()){
                     totalPrice += vegToppings.get(position).price;
                     totalPriceET.setText(String.valueOf(totalPrice));
+                    selectedVegToppings += vegToppings.get(position).vegTopping + ", ";
                 }else{
                     totalPrice -= vegToppings.get(position).price;
                     totalPriceET.setText(String.valueOf(totalPrice));
+                    selectedVegToppings = "No Veg Toppings";
                 }
             }
         });
@@ -184,9 +194,11 @@ public class MainActivity extends AppCompatActivity {
                 if(item.isChecked()){
                     totalPrice += nonVegToppings.get(position).price;
                     totalPriceET.setText(String.valueOf(totalPrice));
+                    selectedNonVegToppings += nonVegToppings.get(position).nonVegTopping + ", ";
                 }else{
                     totalPrice -= nonVegToppings.get(position).price;
                     totalPriceET.setText(String.valueOf(totalPrice));
+                    selectedNonVegToppings = "No Non-Veg Toppings";
                 }
             }
         });
