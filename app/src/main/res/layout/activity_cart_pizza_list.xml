@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -22,9 +23,9 @@
         android:id="@+id/cartPizzaListDescTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="24dp"
         android:text="View your pizza cart below:"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appTitleTV" />
 
@@ -37,22 +38,44 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cartPizzaListDescTV" />
 
-    <ListView
-        android:id="@+id/customPizzaCartLV"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pizzaCartLV" />
-
     <Button
         android:id="@+id/backToHomeBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="16dp"
         android:text="Home"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/cartPizzaListDescTV"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/cartPizzaListDescTV" />
+
+    <Button
+        android:id="@+id/emptyCartBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:text="Empty Cart"
+        app:layout_constraintBottom_toBottomOf="@+id/deleteSelectedBtn"
+        app:layout_constraintStart_toEndOf="@+id/deleteSelectedBtn"
+        app:layout_constraintTop_toTopOf="@+id/deleteSelectedBtn" />
+
+    <Button
+        android:id="@+id/deleteSelectedBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginBottom="8dp"
+        android:text="Delete Selected"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/updateBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:text="Update"
+        app:layout_constraintBottom_toBottomOf="@+id/emptyCartBtn"
+        app:layout_constraintStart_toEndOf="@+id/emptyCartBtn"
+        app:layout_constraintTop_toTopOf="@+id/emptyCartBtn" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

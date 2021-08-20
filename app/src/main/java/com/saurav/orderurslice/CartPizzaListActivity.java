@@ -20,6 +20,12 @@ public class CartPizzaListActivity extends AppCompatActivity
 
     ArrayList<String> cartPizzaArrayList = new ArrayList<>();
     Button backToHomeBtn;
+    Button deleteSelectedBtn;
+    Button emptyCartBtn;
+    Button updateBtn;
+    ListView pizzaCartLV;
+    private String itemAtPosition;
+    private int itemPosition;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,12 +35,26 @@ public class CartPizzaListActivity extends AppCompatActivity
         backToHomeBtn = findViewById(R.id.backToHomeBtn);
         backToHomeBtn.setOnClickListener(this);
 
+        deleteSelectedBtn = findViewById(R.id.deleteSelectedBtn);
+        deleteSelectedBtn.setOnClickListener(this);
+        emptyCartBtn = findViewById(R.id.emptyCartBtn);
+        emptyCartBtn.setOnClickListener(this);
+        updateBtn = findViewById(R.id.updateBtn);
+        updateBtn.setOnClickListener(this);
+
         Intent intent = getIntent();
         cartPizzaArrayList = intent.getStringArrayListExtra("cartPizzaArrayList_key");
 
         ArrayAdapter adapterPizzaCartList = new ArrayAdapter(this, android.R.layout.simple_list_item_1, cartPizzaArrayList);
-        ListView pizzaCartLV = findViewById(R.id.pizzaCartLV);
+        pizzaCartLV = findViewById(R.id.pizzaCartLV);
         pizzaCartLV.setAdapter(adapterPizzaCartList);
+
+        pizzaCartLV.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                itemAtPosition = cartPizzaArrayList.get(position);
+            }
+        });
 
     }
 
@@ -45,6 +65,29 @@ public class CartPizzaListActivity extends AppCompatActivity
             case R.id.backToHomeBtn:
                 n.putStringArrayListExtra("updateCartPizzaArrayList_key", cartPizzaArrayList);
                 startActivity(n);
+                break;
+            case R.id.emptyCartBtn:
+                cartPizzaArrayList.clear();
+                PrefConfig.writeListInPref(getApplicationContext(), cartPizzaArrayList);
+                Toast.makeText(this, "Cart Cleared", Toast.LENGTH_SHORT).show();
+                this.recreate();
+                cartPizzaArrayList = PrefConfig.readListFromPref(this);
+                if (cartPizzaArrayList == null){
+                    cartPizzaArrayList = new ArrayList<>();
+                }
+                break;
+            case R.id.deleteSelectedBtn:
+                cartPizzaArrayList.remove(itemAtPosition);
+                PrefConfig.writeListInPref(getApplicationContext(), cartPizzaArrayList);
+                Toast.makeText(this, "Item Removed", Toast.LENGTH_SHORT).show();
+                this.recreate();
+                cartPizzaArrayList = PrefConfig.readListFromPref(this);
+                if (cartPizzaArrayList == null){
+                    cartPizzaArrayList = new ArrayList<>();
+                }
+                break;
+            case R.id.updateBtn:
+
                 break;
             default:
                 Toast.makeText(this, "View not Implemented", Toast.LENGTH_SHORT).show();
