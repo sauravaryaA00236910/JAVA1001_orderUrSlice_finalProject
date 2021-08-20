@@ -36,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
     private String selectedVegToppings;
     private String selectedNonVegToppings;
     ArrayList<String> customPizzaArrayList = new ArrayList<>();
+    private int updatedItemPosition = 0;
 
 
     @Override
@@ -58,6 +59,8 @@ public class MainActivity extends AppCompatActivity {
 
         customPizzaArrayList = getIntent().getStringArrayListExtra("cartPizzaArrayList_key");
 
+        updatedItemPosition = getIntent().getIntExtra("updatedItemPosition_key", 0);
+
         Intent ne = new Intent(MainActivity.this, PizzaListActivity.class);
         Intent mu = new Intent(MainActivity.this, CartPizzaListActivity.class);
         btnAddToCart = findViewById(R.id.btnAddToCart);
@@ -65,7 +68,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 customPizza =  pizzaName + ": " + pizzaDesc + ": " + selectedSize + ": " + selectedCrust + ": " + extraCheeseSelect + ": " + selectedVegToppings + ": " + selectedNonVegToppings + ": $" + totalPrice;
-                customPizzaArrayList.add(customPizza);
+                if(updatedItemPosition!= 0){
+                    Intent intent = getIntent();
+                    customPizzaArrayList = intent.getStringArrayListExtra("updatedCartPizzaArrayList_key");
+                    customPizzaArrayList.set(updatedItemPosition-1, customPizza);
+                }else{
+                    customPizzaArrayList.add(customPizza);
+                }
                 PrefConfig.writeListInPref(getApplicationContext(), customPizzaArrayList);
                 customPizzaArrayList = PrefConfig.readListFromPref(getApplicationContext());
                 if (customPizzaArrayList == null){

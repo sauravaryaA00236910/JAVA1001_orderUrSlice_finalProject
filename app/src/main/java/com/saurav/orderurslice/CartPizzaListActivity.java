@@ -26,6 +26,8 @@ public class CartPizzaListActivity extends AppCompatActivity
     ListView pizzaCartLV;
     private String itemAtPosition;
     private int itemPosition;
+    private int forUpdateItem;
+    private String updatedItem="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +55,8 @@ public class CartPizzaListActivity extends AppCompatActivity
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 itemAtPosition = cartPizzaArrayList.get(position);
+                itemPosition = position;
+                forUpdateItem = position +1;
             }
         });
 
@@ -61,6 +65,7 @@ public class CartPizzaListActivity extends AppCompatActivity
     @Override
     public void onClick(View view) {
         Intent n = new Intent(CartPizzaListActivity.this, PizzaListActivity.class);
+        Intent m = new Intent(CartPizzaListActivity.this, MainActivity.class);
         switch(view.getId()){
             case R.id.backToHomeBtn:
                 n.putStringArrayListExtra("updateCartPizzaArrayList_key", cartPizzaArrayList);
@@ -87,7 +92,32 @@ public class CartPizzaListActivity extends AppCompatActivity
                 }
                 break;
             case R.id.updateBtn:
-
+//                cartPizzaArrayList.remove(itemAtPosition);
+                n.putExtra("updatedItemPosition_key", forUpdateItem);
+                n.putStringArrayListExtra("updatedCartPizzaArrayList_key", cartPizzaArrayList);
+                m.putExtra("updatedItemPosition_key", forUpdateItem);
+                m.putStringArrayListExtra("updatedCartPizzaArrayList_key", cartPizzaArrayList);
+                startActivity(n);
+                PrefConfig.writeListInPref(getApplicationContext(), cartPizzaArrayList);
+                cartPizzaArrayList = PrefConfig.readListFromPref(this);
+                if (cartPizzaArrayList == null){
+                    cartPizzaArrayList = new ArrayList<>();
+                }
+//                if(updatedItem.isEmpty()){
+//                    n.putExtra("updatedItemPosition_key", itemPosition+1);
+//                    Intent intent = getIntent();
+//                    updatedItem = intent.getStringExtra("updatedItem_key");
+//                }else{
+//                    cartPizzaArrayList.set(itemPosition, updatedItem);
+//                    cartPizzaArrayList.add(itemPosition, updatedItem);
+//                    PrefConfig.writeListInPref(getApplicationContext(), cartPizzaArrayList);
+//                    Toast.makeText(this, "Item Updated", Toast.LENGTH_SHORT).show();
+//                    this.recreate();
+//                    cartPizzaArrayList = PrefConfig.readListFromPref(this);
+//                    if (cartPizzaArrayList == null){
+//                        cartPizzaArrayList = new ArrayList<>();
+//                    }
+//                }
                 break;
             default:
                 Toast.makeText(this, "View not Implemented", Toast.LENGTH_SHORT).show();

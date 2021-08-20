@@ -28,6 +28,7 @@ public class PizzaListActivity extends AppCompatActivity
     Button customPizzaHomeBtn;
     Button viewCartBtn;
     ArrayList<String> cartPizzaArrayList = new ArrayList<>();
+    private int updatedItemPosition = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +66,8 @@ public class PizzaListActivity extends AppCompatActivity
         if (cartPizzaArrayList == null){
             cartPizzaArrayList = new ArrayList<>();
         }
+
+        updatedItemPosition = getIntent().getIntExtra("updatedItemPosition_key", 0);
     }
 
     @Override
@@ -73,7 +76,14 @@ public class PizzaListActivity extends AppCompatActivity
         Intent m = new Intent(PizzaListActivity.this, CartPizzaListActivity.class);
         switch(view.getId()){
             case R.id.addToCartHomeBtn:
-                cartPizzaArrayList.add(pizzaSelected);
+//                cartPizzaArrayList.add(pizzaSelected);
+                if(updatedItemPosition!= 0){
+                    Intent intent = getIntent();
+                    cartPizzaArrayList = intent.getStringArrayListExtra("updatedCartPizzaArrayList_key");
+                    cartPizzaArrayList.set(updatedItemPosition-1, pizzaSelected);
+                }else{
+                    cartPizzaArrayList.add(pizzaSelected);
+                }
                 PrefConfig.writeListInPref(getApplicationContext(), cartPizzaArrayList);
                 break;
             case R.id.customPizzaHomeBtn:
@@ -89,6 +99,7 @@ public class PizzaListActivity extends AppCompatActivity
                     cartPizzaArrayList = new ArrayList<>();
                 }
                 m.putStringArrayListExtra("cartPizzaArrayList_key", cartPizzaArrayList);
+//                m.putExtra("updatedItem_key", pizzaSelected);
                 startActivity(m);
                 break;
             default:
