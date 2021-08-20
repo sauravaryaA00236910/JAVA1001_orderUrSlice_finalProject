@@ -58,15 +58,18 @@ public class MainActivity extends AppCompatActivity {
 
         customPizzaArrayList = getIntent().getStringArrayListExtra("cartPizzaArrayList_key");
 
+        Intent ne = new Intent(MainActivity.this, PizzaListActivity.class);
+        Intent mu = new Intent(MainActivity.this, CartPizzaListActivity.class);
         btnAddToCart = findViewById(R.id.btnAddToCart);
         btnAddToCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent n = new Intent(MainActivity.this, CartPizzaListActivity.class);
                 customPizza =  pizzaName + ": " + pizzaDesc + ": " + selectedSize + ": " + selectedCrust + ": " + extraCheeseSelect + ": " + selectedVegToppings + ": " + selectedNonVegToppings + ": $" + totalPrice;
                 customPizzaArrayList.add(customPizza);
-                n.putStringArrayListExtra("customPizzaArrayList_key", customPizzaArrayList);
-                startActivity(n);
+                mu.putStringArrayListExtra("cartPizzaArrayList_key", customPizzaArrayList);
+                ne.putStringArrayListExtra("cartPizzaArrayList_key", customPizzaArrayList);
+                startActivity(mu);
+
             }
         });
 

@@ -61,6 +61,11 @@ public class PizzaListActivity extends AppCompatActivity
                 pizzaSelected = pizzaOptions.get(position).toString();
             }
         });
+
+        cartPizzaArrayList = getIntent().getStringArrayListExtra("updateCartPizzaArrayList_key");
+        if (cartPizzaArrayList == null){
+            cartPizzaArrayList = new ArrayList<>();
+        }
     }
 
     @Override
@@ -70,13 +75,12 @@ public class PizzaListActivity extends AppCompatActivity
         switch(view.getId()){
             case R.id.addToCartHomeBtn:
                 cartPizzaArrayList.add(pizzaSelected);
-//                m.putExtra("pizzaSelected_key", pizzaSelected);
                 break;
             case R.id.customPizzaHomeBtn:
                 n.putExtra("pizzaName_key", pizzaName);
                 n.putExtra("pizzaDesc_key", pizzaDesc);
                 n.putExtra("pizzaPrice_key", String.valueOf(pizzaPrice));
-                m.putStringArrayListExtra("cartPizzaArrayList_key", cartPizzaArrayList);
+                n.putStringArrayListExtra("cartPizzaArrayList_key", cartPizzaArrayList);
                 startActivity(n);
                 break;
             case R.id.viewCartBtn:
