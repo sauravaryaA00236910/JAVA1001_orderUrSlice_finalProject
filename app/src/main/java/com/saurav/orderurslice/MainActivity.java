@@ -66,6 +66,11 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 customPizza =  pizzaName + ": " + pizzaDesc + ": " + selectedSize + ": " + selectedCrust + ": " + extraCheeseSelect + ": " + selectedVegToppings + ": " + selectedNonVegToppings + ": $" + totalPrice;
                 customPizzaArrayList.add(customPizza);
+                PrefConfig.writeListInPref(getApplicationContext(), customPizzaArrayList);
+                customPizzaArrayList = PrefConfig.readListFromPref(getApplicationContext());
+                if (customPizzaArrayList == null){
+                    customPizzaArrayList = new ArrayList<>();
+                }
                 mu.putStringArrayListExtra("cartPizzaArrayList_key", customPizzaArrayList);
                 ne.putStringArrayListExtra("cartPizzaArrayList_key", customPizzaArrayList);
                 startActivity(mu);

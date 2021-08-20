@@ -75,6 +75,7 @@ public class PizzaListActivity extends AppCompatActivity
         switch(view.getId()){
             case R.id.addToCartHomeBtn:
                 cartPizzaArrayList.add(pizzaSelected);
+                PrefConfig.writeListInPref(getApplicationContext(), cartPizzaArrayList);
                 break;
             case R.id.customPizzaHomeBtn:
                 n.putExtra("pizzaName_key", pizzaName);
@@ -84,6 +85,10 @@ public class PizzaListActivity extends AppCompatActivity
                 startActivity(n);
                 break;
             case R.id.viewCartBtn:
+                cartPizzaArrayList = PrefConfig.readListFromPref(this);
+                if (cartPizzaArrayList == null){
+                    cartPizzaArrayList = new ArrayList<>();
+                }
                 m.putStringArrayListExtra("cartPizzaArrayList_key", cartPizzaArrayList);
                 startActivity(m);
                 break;
