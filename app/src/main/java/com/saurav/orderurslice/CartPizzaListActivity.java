@@ -92,7 +92,6 @@ public class CartPizzaListActivity extends AppCompatActivity
                 }
                 break;
             case R.id.updateBtn:
-//                cartPizzaArrayList.remove(itemAtPosition);
                 n.putExtra("updatedItemPosition_key", forUpdateItem);
                 n.putStringArrayListExtra("updatedCartPizzaArrayList_key", cartPizzaArrayList);
                 m.putExtra("updatedItemPosition_key", forUpdateItem);
@@ -103,21 +102,6 @@ public class CartPizzaListActivity extends AppCompatActivity
                 if (cartPizzaArrayList == null){
                     cartPizzaArrayList = new ArrayList<>();
                 }
-//                if(updatedItem.isEmpty()){
-//                    n.putExtra("updatedItemPosition_key", itemPosition+1);
-//                    Intent intent = getIntent();
-//                    updatedItem = intent.getStringExtra("updatedItem_key");
-//                }else{
-//                    cartPizzaArrayList.set(itemPosition, updatedItem);
-//                    cartPizzaArrayList.add(itemPosition, updatedItem);
-//                    PrefConfig.writeListInPref(getApplicationContext(), cartPizzaArrayList);
-//                    Toast.makeText(this, "Item Updated", Toast.LENGTH_SHORT).show();
-//                    this.recreate();
-//                    cartPizzaArrayList = PrefConfig.readListFromPref(this);
-//                    if (cartPizzaArrayList == null){
-//                        cartPizzaArrayList = new ArrayList<>();
-//                    }
-//                }
                 break;
             default:
                 Toast.makeText(this, "View not Implemented", Toast.LENGTH_SHORT).show();

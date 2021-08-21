@@ -101,7 +101,6 @@ public class PizzaListActivity extends AppCompatActivity
                     cartPizzaArrayList = new ArrayList<>();
                 }
                 m.putStringArrayListExtra("cartPizzaArrayList_key", cartPizzaArrayList);
-//                m.putExtra("updatedItem_key", pizzaSelected);
                 startActivity(m);
                 break;
             default:

@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
 
     private float totalPrice;
     private EditText totalPriceET;
-    private Button btnAddToCart;
+    Button btnAddToCart;
     private TextView pizzaTypeTV;
     private TextView pizzaDescTV;
     private String initialPrice;
@@ -36,7 +36,6 @@ public class MainActivity extends AppCompatActivity {
     private String selectedVegToppings;
     private String selectedNonVegToppings;
     ArrayList<String> customPizzaArrayList = new ArrayList<>();
-    private int updatedItemPosition = 0;
     Button backToHomeScreenBtn;
 
 
@@ -60,8 +59,6 @@ public class MainActivity extends AppCompatActivity {
 
         customPizzaArrayList = getIntent().getStringArrayListExtra("cartPizzaArrayList_key");
 
-        updatedItemPosition = getIntent().getIntExtra("updatedItemPosition_key", 0);
-
         Intent ne = new Intent(MainActivity.this, PizzaListActivity.class);
         Intent mu = new Intent(MainActivity.this, CartPizzaListActivity.class);
 
@@ -77,13 +74,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 customPizza =  pizzaName + ": " + pizzaDesc + ": " + selectedSize + ": " + selectedCrust + ": " + extraCheeseSelect + ": " + selectedVegToppings + ": " + selectedNonVegToppings + ": $" + totalPrice;
-                if(updatedItemPosition != 0){
-                    Intent intent = getIntent();
-                    customPizzaArrayList = intent.getStringArrayListExtra("updatedCartPizzaArrayList_key");
-                    customPizzaArrayList.set(updatedItemPosition-1, customPizza);
-                }else{
-                    customPizzaArrayList.add(customPizza);
-                }
+                customPizzaArrayList.add(customPizza);
                 PrefConfig.writeListInPref(getApplicationContext(), customPizzaArrayList);
                 customPizzaArrayList = PrefConfig.readListFromPref(getApplicationContext());
                 if (customPizzaArrayList == null){
@@ -92,7 +83,6 @@ public class MainActivity extends AppCompatActivity {
                 mu.putStringArrayListExtra("cartPizzaArrayList_key", customPizzaArrayList);
                 ne.putStringArrayListExtra("cartPizzaArrayList_key", customPizzaArrayList);
                 startActivity(mu);
-
             }
         });
 
@@ -115,7 +105,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-//        PizzaSize[] sizes = {new PizzaSize("Regular", 1.5f), new PizzaSize("Medium", 3f), new PizzaSize("Large", 5f)};
         ArrayList<PizzaSize> sizes = new ArrayList<>();
         sizes.add(0, new PizzaSize("None", 0f));
         sizes.add(1, new PizzaSize("Regular", 1.5f));
@@ -141,7 +130,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-//        PizzaCrust[] crusts = {new PizzaCrust("New Hand Tossed", 1f), new PizzaCrust("Cheese Burst", 2f), new PizzaCrust("Fresh Pan", 2f), new PizzaCrust("Classic Hand Tossed", 1f)};
         ArrayList<PizzaCrust> crusts = new ArrayList<>();
         crusts.add(0, new PizzaCrust("None", 0f));
         crusts.add(1, new PizzaCrust("New Hand Tossed", 1f));
@@ -166,7 +154,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-//        PizzaVegTopping[] vegToppings = {new PizzaVegTopping("Grilled Mushrooms", 0.5f), new PizzaVegTopping("Onion", 0.5f), new PizzaVegTopping("Crisp Capsicum", 0.5f), new PizzaVegTopping("Fresh Tomato", 0.5f), new PizzaVegTopping("Paneer", 0.5f), new PizzaVegTopping("Red Pepper", 0.5f), new PizzaVegTopping("Jalapeno", 0.5f), new PizzaVegTopping("Golden Corn", 0.5f), new PizzaVegTopping("Black Olive", 0.5f)};
         ArrayList<PizzaVegTopping> vegToppings = new ArrayList<>();
         vegToppings.add(0, new PizzaVegTopping("None", 0f));
         vegToppings.add(1, new PizzaVegTopping("Grilled Mushrooms", 0.5f));
