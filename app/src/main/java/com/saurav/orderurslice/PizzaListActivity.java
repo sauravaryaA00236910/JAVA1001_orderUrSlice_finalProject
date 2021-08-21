@@ -83,8 +83,10 @@ public class PizzaListActivity extends AppCompatActivity
                     Intent intent = getIntent();
                     cartPizzaArrayList = intent.getStringArrayListExtra("updatedCartPizzaArrayList_key");
                     cartPizzaArrayList.set(updatedItemPosition-1, pizzaSelected);
+                    Toast.makeText(this, "Item updated", Toast.LENGTH_SHORT).show();
                 }else{
                     cartPizzaArrayList.add(pizzaSelected);
+                    Toast.makeText(this, "Added to cart", Toast.LENGTH_SHORT).show();
                 }
                 PrefConfig.writeListInPref(getApplicationContext(), cartPizzaArrayList);
                 break;

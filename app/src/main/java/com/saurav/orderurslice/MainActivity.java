@@ -16,6 +16,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -80,6 +81,7 @@ public class MainActivity extends AppCompatActivity {
                 if (customPizzaArrayList == null){
                     customPizzaArrayList = new ArrayList<>();
                 }
+                Toast.makeText(MainActivity.this, "Added to cart", Toast.LENGTH_SHORT).show();
                 mu.putStringArrayListExtra("cartPizzaArrayList_key", customPizzaArrayList);
                 ne.putStringArrayListExtra("cartPizzaArrayList_key", customPizzaArrayList);
                 startActivity(mu);
