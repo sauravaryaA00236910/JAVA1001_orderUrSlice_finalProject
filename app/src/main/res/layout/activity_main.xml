@@ -12,6 +12,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="#FFFFFF"
         tools:context=".MainActivity">
 
         <TextView
@@ -30,10 +31,11 @@
 
         <ImageView
             android:id="@+id/pizzaTypeImage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="200dp"
+            android:layout_height="126dp"
             android:layout_marginTop="24dp"
-            android:src="@drawable/ic_launcher_background"
+            android:scaleType="fitXY"
+            android:src="@drawable/custom_pizza_name"
             app:layout_constraintBottom_toTopOf="@+id/pizzaTypeTV"
             app:layout_constraintEnd_toEndOf="@+id/appTitleTV"
             app:layout_constraintStart_toStartOf="@+id/appTitleTV"
@@ -104,10 +106,10 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:text="@string/add_non_veg_toppings"
+            app:layout_constraintBottom_toTopOf="@+id/nonVegToppingsLV"
             app:layout_constraintEnd_toEndOf="@+id/vegToppingsTV"
             app:layout_constraintStart_toStartOf="@+id/vegToppingsTV"
-            app:layout_constraintTop_toBottomOf="@+id/vegToppingsLV"
-            app:layout_constraintBottom_toTopOf="@+id/nonVegToppingsLV"/>
+            app:layout_constraintTop_toBottomOf="@+id/vegToppingsLV" />
 
         <TextView
             android:id="@+id/pizzaTypeTV"
@@ -212,6 +214,16 @@
             app:layout_constraintTop_toBottomOf="@+id/vegToppingsTV"
             app:layout_constraintVertical_bias="0.058"
             tools:layout_editor_absoluteX="0dp" />
+
+        <Button
+            android:id="@+id/bactToHomeScreenBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:text="Home"
+            app:layout_constraintBottom_toBottomOf="@+id/appTitleTV"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/appTitleTV" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

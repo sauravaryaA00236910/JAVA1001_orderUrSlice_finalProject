@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
     private String selectedNonVegToppings;
     ArrayList<String> customPizzaArrayList = new ArrayList<>();
     private int updatedItemPosition = 0;
+    Button backToHomeScreenBtn;
 
 
     @Override
@@ -63,12 +64,20 @@ public class MainActivity extends AppCompatActivity {
 
         Intent ne = new Intent(MainActivity.this, PizzaListActivity.class);
         Intent mu = new Intent(MainActivity.this, CartPizzaListActivity.class);
+
+        backToHomeScreenBtn = findViewById(R.id.bactToHomeScreenBtn);
+        backToHomeScreenBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(ne);
+            }
+        });
         btnAddToCart = findViewById(R.id.btnAddToCart);
         btnAddToCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 customPizza =  pizzaName + ": " + pizzaDesc + ": " + selectedSize + ": " + selectedCrust + ": " + extraCheeseSelect + ": " + selectedVegToppings + ": " + selectedNonVegToppings + ": $" + totalPrice;
-                if(updatedItemPosition!= 0){
+                if(updatedItemPosition != 0){
                     Intent intent = getIntent();
                     customPizzaArrayList = intent.getStringArrayListExtra("updatedCartPizzaArrayList_key");
                     customPizzaArrayList.set(updatedItemPosition-1, customPizza);

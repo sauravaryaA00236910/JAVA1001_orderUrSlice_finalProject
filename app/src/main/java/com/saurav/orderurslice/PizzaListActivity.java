@@ -47,6 +47,8 @@ public class PizzaListActivity extends AppCompatActivity
         pizzaOptions.add(1, new PizzaDetails("The Unthinkable Pizza", "Loaded with plant based protein topping along with black olives and red paprika", 3));
         pizzaOptions.add(2,new PizzaDetails("Pepper Barbecue Chicken", "Pepper barbecue chicken for that extra zing", 4));
         pizzaOptions.add(3,new PizzaDetails("Chicken Golden Delight", "Double pepper barbecue chicken, golden corn and extra cheese, true delight", 4));
+        pizzaOptions.add(4, new PizzaDetails("The Unthinkable Pizza", "Loaded with plant based protein topping along with black olives and red paprika", 3));
+        pizzaOptions.add(5,new PizzaDetails("Pepper Barbecue Chicken", "Pepper barbecue chicken for that extra zing", 4));
         ArrayAdapter adapterPizzaOptions = new ArrayAdapter(this, android.R.layout.simple_expandable_list_item_1, pizzaOptions);
 
         ListView pizzaOptionsLV = findViewById(R.id.pizzaOptionsLV);
